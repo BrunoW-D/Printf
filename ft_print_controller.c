@@ -6,13 +6,13 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/04 12:52:15 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:24:34 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 
-int		ft_print_controller(char c, va_list ap)
+int		ft_print_controller(char c, va_list ap, int *flags, char modif)
 {
 	if (c == s)
 		return (ft_print_s(ap));

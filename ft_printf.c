@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/04 15:11:02 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/06 12:50:43 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		len;
-	char	f;
+	//char	f;
 
 	if (format == NULL)
 		return (0);
@@ -27,8 +27,8 @@ int		ft_printf(const char *format, ...)
 	va_start(ap, format);
 	while (*format)
 	{
-		if (*(format + 1))
-			f = *(format + 1);
+		//if (*(format + 1))
+		//	f = *(format + 1);
 		if (*format == '%')
 			len += ft_convert(format, va_arg(ap, char *));
 		else
@@ -46,8 +46,8 @@ int		ft_printf(const char *format, ...)
 int		main(void)
 {
 	wchar_t	*s1 = "Ceci";
-	wchar_t	*s2 = "un";
-	wchar_t	*s3 = "test";
+	char	*s2 = "un";
+	char	*s3 = "test";
 
 	printf("%S est %s %s.\n", s1, s2, s3);
 	return (0);
