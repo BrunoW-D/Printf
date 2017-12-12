@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:16 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/06 14:13:43 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/11 12:01:21 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(void)
 	printf("X = %X\n", n);
 	printf("c = %c\n", str[0]);
 	printf("C = %C\n", str[0]);
+	printf("%%\n");
 	free(wstr);
 	return (0);
 }

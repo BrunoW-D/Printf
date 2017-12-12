@@ -6,40 +6,53 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/06 13:24:34 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/11 16:24:28 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+#include "ft.h"
 
-int		ft_print_controller(char c, va_list ap, int *flags, char modif)
+static char	(*g_p[14]) (va_list ap, t_flags flags);
+static char	*g_types = "sSpdDioOuUxXcC";
+
+void	init_p()
 {
-	if (c == s)
-		return (ft_print_s(ap));
-	else if (c == S)
-		return (ft_print_ss(ap));
-	else if (c == p)
-		return (ft_print_p(ap));
-	else if (c == d)
-		return (ft_print_d(ap));
-	else if (c == D)
-		return (ft_print_dd(ap));
-	else if (c == i)
-		return (ft_print_i(ap));
-	else if (c == o)
-		return (ft_print_o(ap));
-	else if (c == O)
-		return (ft_print_oo(ap));
-	else if (c == u)
-		return (ft_print_u(ap));
-	else if (c == U)
-		return (ft_print_uu(ap));
-	else if (c == x)
-		return (ft_print_x(ap));
-	else if (c == X)
-		return (ft_print_xx(ap));
-	else if (c == c)
-		return (ft_print_c(ap));
-	else if (c == C)
-		return (ft_print_cc(ap));
+	g_p[0] = ft_print_s;
+	g_p[1] = ft_print_ss;
+	g_p[2] = ft_print_p;
+	g_p[3] = ft_print_d;
+	g_p[4] = ft_print_dd;
+	g_p[5] = ft_print_i;
+	g_p[6] = ft_print_o;
+	g_p[7] = ft_print_oo;
+	g_p[8] = ft_print_u;
+	g_p[9] = ft_print_uu;
+	g_p[10] = ft_print_x;
+	g_p[11] = ft_print_xx;
+	g_p[12] = ft_print_c;
+	g_p[13] = ft_print_cc;
+}
+
+char	*ft_print_controller(char c, va_list ap, t_flags *flags)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (g_types[i])
+	{
+		if (c == g_types[i])
+			str = ft_realloc(str, (g_p[i](ap, flags)));
+		i++;
+	}
+	i = ft_strlen(str);
+	while (i < flags->options[3])
+	{
+		if (flags->options[1] == 1)
+			str = ft_realloc(str, " ");
+		else if (flags->options[1] == 2)
+			str = ft_realloc("0", str);
+		i++;
+	}
+	return (str);
 }

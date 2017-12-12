@@ -6,20 +6,16 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/06 12:50:43 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/11 16:27:00 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
-#include <wchar.h>
-
-/*
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		len;
 	//char	f;
+	char	*str;
 
 	if (format == NULL)
 		return (0);
@@ -30,18 +26,15 @@ int		ft_printf(const char *format, ...)
 		//if (*(format + 1))
 		//	f = *(format + 1);
 		if (*format == '%')
-			len += ft_convert(format, va_arg(ap, char *));
+			str = ft_realloc(str, ft_convert(format, va_arg(ap, char *)));
 		else
-		{
-			putchar(*format);
-			len++;
-		}
+			str = ft_realloc(str, *format);
 		format++;
 	}
 	va_end(ap);
-	return (len);
+	ft_putstr(str);
+	return (ft_strlen(str));
 }
-*/
 
 int		main(void)
 {
