@@ -44,12 +44,20 @@ int		init_flags(t_flags flags)
 	return (flags);
 }
 
+int		is_format_flag(const char c)
+{
+	if (c == '#' || c == '-' || c == '+' || c == ' ' || c == '0')
+		return (1);
+	else
+		return (0);
+}
+
 char	*ft_convert(const char *format, va_list ap)
 {
 	t_flags	flags;
 
 	flags = init_flags(flags);
-	while (!ft_isdigit(*format) && *format != '.' && !is_modif(*format))
+	while (is_format_flag(*format))
 	{
 		if (*format == '#')
 			flags->options[0] = 1;
@@ -63,17 +71,24 @@ char	*ft_convert(const char *format, va_list ap)
 			flags->options[1] = 2;
 		format++;
 	}
-	while (!is_type_flag(*format) && *format != '.' && !is_modif(*format))
+	while (ft_isdigit(*format))
 	{
-		flags->options[3]++;
+		flags->options[3] *= 10;
+		flags->options[3] += *format;
 		format++;
 	}
 	if (*format == '.')
-		while (!is_type_flag(*format) && !is_modif(*format))
-		{
-			flags->options[4]++;
-			format++;
-		}
+	{
+		if (ft_isdigit(*++format))
+			while (ft_isdigit(*format))
+			{
+				flags->options[4] *= 10;
+				flags->options[4] += *format;
+				format++;
+			}
+		else
+			return (NULL);
+	}
 	if (is_modif(*format))
 	{
 		flags->modifier[0] = *format;
@@ -82,7 +97,7 @@ char	*ft_convert(const char *format, va_list ap)
 			flags->modifier[1] = *format++;
 		format++;
 	}
-	if (is_type_flag(*format))
+	if (is_type_flag(*format) && *format + 1 == '\0')
 		return (ft_print_controller(*format, ap, flags));
 	else
 		return (NULL);
