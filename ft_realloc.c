@@ -12,7 +12,7 @@
 
 #include "ft.h"
 
-char	*ft_realloc(const char *str1, const char *str2)
+char	*ft_realloc(char *str1, const char *str2)
 {
 	char	*tmp;
 	int		i;

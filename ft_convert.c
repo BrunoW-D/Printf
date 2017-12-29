@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:46:49 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/29 16:36:13 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/29 17:57:53 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ int		init_flags(t_flags flags)
 	flags->modifier[0] = 0;
 	flags->modifier[1] = 0;
 	return (flags);
+}
+
+int		is_format_flag(const char c)
+{
+	if (c == '#' || c == '-' || c == '+' || c == ' ' || c == '0')
+		return (1);
+	else
+		return (0);
 }
 
 char	*ft_convert(const char *format, va_list ap)
