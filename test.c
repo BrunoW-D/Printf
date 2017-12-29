@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:16 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/11 12:01:21 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/29 17:55:23 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int main(void)
 {
 	char *str = "Hello world !";
 	int	n = 32;
-	wchar_t *wstr = (wchar_t*)malloc(sizeof(wchar_t) * 1);
+	wchar_t wstr[30] = L"Salut G\x82rard !";
 	wstr[0] = 0xC9;
 
 	printf("str = %s, n = %d\n", str, n);
 	printf("s =  %s\n", str);
+	printf("ls = %ls\n", wstr);
 	printf("S = %S\n", wstr);
 	printf("p = %p\n", &str);
 	printf("d = %d\n", n);
@@ -37,6 +38,5 @@ int main(void)
 	printf("c = %c\n", str[0]);
 	printf("C = %C\n", str[0]);
 	printf("%%\n");
-	free(wstr);
 	return (0);
 }

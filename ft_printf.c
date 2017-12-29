@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/11 16:27:00 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/29 17:22:02 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_printf(const char *format, ...)
 		format++;
 	}
 	va_end(ap);
-	ft_putstr(str);
+	write(1, str, ft_strlen(str));
 	return (ft_strlen(str));
 }
 

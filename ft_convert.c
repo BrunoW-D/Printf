@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:46:49 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/11 16:23:56 by bwang-do         ###   ########.fr       */
+/*   Updated: 2017/12/29 16:36:13 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,41 +49,45 @@ char	*ft_convert(const char *format, va_list ap)
 	t_flags	flags;
 
 	flags = init_flags(flags);
-	while (!ft_isdigit(*format) && *format != '.' && !is_modif(*format))
+	while (*format)
 	{
-		if (*format == '#')
-			flags->options[0] = 1;
-		else if (*format == '-')
-			flags->options[1] = 1;
-		else if (*format == '+')
-			flags->options[2] = 1;
-		else if (*format == ' ' && !flags->options[2])
-			flags->options[2] = 2;
-		else if (*format == '0' && !flags->options[1])
-			flags->options[1] = 2;
-		format++;
-	}
-	while (!is_type_flag(*format) && *format != '.' && !is_modif(*format))
-	{
-		flags->options[3]++;
-		format++;
-	}
-	if (*format == '.')
-		while (!is_type_flag(*format) && !is_modif(*format))
+		while (!ft_isdigit(*format) && *format != '.' && !is_modif(*format))
 		{
-			flags->options[4]++;
+			if (*format == '#')
+				flags->options[0] = 1;
+			else if (*format == '-')
+				flags->options[1] = 1;
+			else if (*format == '+')
+				flags->options[2] = 1;
+			else if (*format == ' ' && !flags->options[2])
+				flags->options[2] = 2;
+			else if (*format == '0' && !flags->options[1])
+				flags->options[1] = 2;
 			format++;
 		}
-	if (is_modif(*format))
-	{
-		flags->modifier[0] = *format;
-		if ((*format == 'h' && *format  + 1 == 'h')
-				|| (*format == 'l' && *format + 1 == 'l'))
-			flags->modifier[1] = *format++;
-		format++;
+		while (!is_type_flag(*format) && *format != '.' && !is_modif(*format))
+		{
+			flags->options[3]++;
+			format++;
+		}
+		if (*format == '.')
+			while (!is_type_flag(*format) && !is_modif(*format))
+			{
+				flags->options[4]++;
+				format++;
+			}
+		if (is_modif(*format))
+		{
+			flags->modifier[0] = *format;
+			if ((*format == 'h' && *format  + 1 == 'h')
+					|| (*format == 'l' && *format + 1 == 'l'))
+				flags->modifier[1] = *format++;
+			format++;
+		}
+		if (is_type_flag(*format))
+			return (ft_print_controller(*format, ap, flags));
+		else
+			return (NULL);
 	}
-	if (is_type_flag(*format))
-		return (ft_print_controller(*format, ap, flags));
-	else
-		return (NULL);
+	return (NULL);
 }
