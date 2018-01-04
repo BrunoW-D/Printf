@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:16 by bwang-do          #+#    #+#             */
-/*   Updated: 2017/12/29 17:55:23 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/01/04 14:44:29 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int main(void)
 {
 	char *str = "Hello world !";
 	int	n = 32;
-	wchar_t wstr[30] = L"Salut G\x82rard !";
-	wstr[0] = 0xC9;
+	wchar_t *wstr = L"Salut G\x82rard !";
 
 	printf("str = %s, n = %d\n", str, n);
 	printf("s =  %s\n", str);
