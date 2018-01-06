@@ -39,7 +39,7 @@ void	ft_wchar_to_char(wchar_t wc)
 		str[1] = (char)((wc >> 8) & 0xff);
 		str[2] = (char)(wc & 0xff);
 	}
-	else if (wc <= 0x1fffff)
+	else if (wc <= 0x10ffff)
 	{
 		str[0] = (char)((wc >> 24) & 0xff);
 		str[1] = (char)((wc >> 16) & 0xff);
