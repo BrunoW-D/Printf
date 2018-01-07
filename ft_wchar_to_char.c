@@ -15,43 +15,43 @@
 #include <wchar.h>
 #include <string.h>
 
-void	ft_wchar_to_char(wchar_t wc)
+void    ft_wchar_to_char(wchar_t wc)
 {
-	char	str[5];
-	int		i;
+    char    str[5];
+    int        i;
 
-	i = 0;
-	while (i < 5)
-	{
-		str[i] = '\0';
-		i++;
-	}
-	if (wc <= 0x7f)
-		str[0] = (char)wc;
-	else if (wc <= 0x7ff)
-	{
-		str[0] = (char)((wc >> 8) & 0xff);
-		str[1] = (char)(wc & 0xff);
-	}
-	else if (wc <= 0xffff)
-	{
-		str[0] = (char)((wc >> 16) & 0xff);
-		str[1] = (char)((wc >> 8) & 0xff);
-		str[2] = (char)(wc & 0xff);
-	}
-	else if (wc <= 0x10ffff)
-	{
-		str[0] = (char)((wc >> 24) & 0xff);
-		str[1] = (char)((wc >> 16) & 0xff);
-		str[2] = (char)((wc >> 8) & 0xff);
-		str[3] = (char)(wc & 0xff);
-	}
-	write (1, str, strlen(str));
+    i = 0;
+    while (i < 5)
+    {
+        str[i] = '\0';
+        i++;
+    }
+    if (wc <= 0x7f)
+        str[0] = (char)wc;
+    else if (wc <= 0x7ff)
+    {
+        str[0] = (char)(wc >> 6 | 0xc0);
+        str[1] = (char)((wc & 0x3f) | 0x80);
+    }
+    else if (wc <= 0xffff)
+    {
+        str[0] = (char)(wc >> 12 | 0xe0);
+        str[1] = (char)((wc >> 6 & 0x3f) | 0x80);
+        str[2] = (char)((wc & 0x3f) | 0x80);
+    }
+    else if (wc <= 0x10ffff)
+    {
+        str[0] = (char)(wc >> 18 | 0xf0);
+        str[1] = (char)((wc >> 12 & 0x3f) | 0x80);
+        str[2] = (char)((wc >> 6 & 0x3f) | 0x80);
+        str[3] = (char)((wc & 0x3f) | 0x80);
+    }
+    write (1, str, strlen(str));
 }
 
-int		main(void)
+int        main(void)
 {
-	wchar_t wc = L'\x1234';
+    wchar_t wc = L'\x1234';
 
-	ft_wchar_to_char(wc);
+    ft_wchar_to_char(wc);
 }
