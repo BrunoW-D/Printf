@@ -22,14 +22,6 @@ int        is_type_flag(const char c)
         return (0);
 }
 
-int        is_modif(const char c)
-{
-    if (c == 'h' || c == 'l' || c == 'j' || c == 'z')
-        return (1);
-    else
-        return (0);
-}
-
 int        init_flags(t_flags flags)
 {
     int    i;
@@ -44,18 +36,33 @@ int        init_flags(t_flags flags)
     return (flags);
 }
 
-int        is_format_flag(const char c)
+int     get_num(const char **format)
 {
-    if (c == '#' || c == '-' || c == '+' || c == ' ' || c == '0')
-        return (1);
-    else
-        return (0);
+  int n;
+  
+  n = 0;
+  while (**format >= '0' && **format <= '9')
+  {
+      n *= 10;
+      n += **format;
+      *format++;
+  }
+  return (n);
+}
+
+void    get_modifier(t_flags *flags, const char **format)
+{ 
+    (*flags)->modifier[0] = **format;
+    (*flags)->modifier[1] = 0;
+    if ((**format == 'h' && **format  + 1 == 'h')
+            || (**format == 'l' && **format + 1 == 'l'))
+        (*flags)->modifier[1] = **format++;
+    *format++;
 }
 
 char    *ft_convert(const char *format, va_list ap)
 {
     t_flags    flags;
-    int         n;
     
     flags = init_flags(flags);
     while (*format)
@@ -71,39 +78,19 @@ char    *ft_convert(const char *format, va_list ap)
         else if (*format == '0' && !flags->options[1])
             flags->options[1] = 2;
         else if (*format >= '1' && *format <= '9')
-        {
-            n = 0;
-            while (*format >= '0' && *format <= '9')
-            {
-                n++;
-                format++;
-            }
-            flags->options[3] = n;
-        }
+            flags->options[3] = get_num(&format);
         else if (*format == '.')
-        {
-            *format++;
-            n = 0;
-            while (*format >= '0' && *format <= '9')
-            {
-                n++;
-                format++;
-            }
-            flags->options[4] = n;
-        }
-        else if (is_modif(*format))
-        {
-            flags->modifier[0] = *format;
-            flags->modifier[1] = 0;
-            if ((*format == 'h' && *format  + 1 == 'h')
-                    || (*format == 'l' && *format + 1 == 'l'))
-                flags->modifier[1] = *format++;
-            format++;
-        }
+            flags->options[4] = get_num(&(++format));
+        else if (*format == 'h' || *format == 'l'
+                || *format == 'j' || *format == 'z')
+            get_modifier(&flags, &format);
+        else if (*format == '%')
+            return (ft_strdup("%"));
         else if (is_type_flag(*format))
             return (ft_print_controller(*format, ap, flags));
         else
             return (NULL);
+        format++;
     }
     return (NULL);
 }
