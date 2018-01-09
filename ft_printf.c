@@ -10,23 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+int        	init_flags(t_flags flags)
+{
+    int    i;
+
+    i = 0;
+    while (i < 5)
+    {
+        flags->options[i] = 0;
+    }
+    flags->modifier[0] = 0;
+    flags->modifier[1] = 0;
+    return (flags);
+}
+
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		len;
-	//char	f;
 	char	*str;
-
+	t_flags		flags;
+	
+	flags = init_flags(flags);
 	if (format == NULL)
 		return (0);
 	len = 0;
 	va_start(ap, format);
 	while (*format)
 	{
-		//if (*(format + 1))
-		//	f = *(format + 1);
 		if (*format == '%')
-			str = ft_realloc(str, ft_convert(format, va_arg(ap, char *)));
+			str = ft_realloc(str, ft_get_flags(format, va_arg(ap, char *), flags));
 		else
 			str = ft_realloc(str, *format);
 		format++;
