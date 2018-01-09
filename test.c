@@ -16,26 +16,28 @@
 
 int main(void)
 {
-	char *str = "Hello world !";
-	int	n = 32;
-	wchar_t *wstr = L"Salut G\x82rard !";
+    char *str = "Hello world !";
+    int    n = 32;
+    wchar_t *wstr = L"\x1234";
 
-	printf("str = %s, n = %d\n", str, n);
-	printf("s =  %s\n", str);
-	printf("ls = %ls\n", wstr);
-	printf("S = %S\n", wstr);
-	printf("p = %p\n", &str);
-	printf("d = %d\n", n);
-	printf("D = %D\n", n);
-	printf("i = %i\n", n);
-	printf("o = %o\n", n);
-	printf("O = %O\n", n);
-	printf("u = %u\n", n);
-	printf("U = %U\n", n);
-	printf("x = %x\n", n);
-	printf("X = %X\n", n);
-	printf("c = %c\n", str[0]);
-	printf("C = %C\n", str[0]);
-	printf("%%\n");
-	return (0);
+    printf("str = %s, n = %d\n", str, n);
+    printf("s =  %s\n", str);
+    printf("ls = %ls\n", wstr);
+    printf("S = %S\n", wstr);
+    printf("p = %p\n", &str);
+    printf("d = %d\n", n);
+    printf("D = %D\n", n);
+    printf("i = %i\n", n);
+    printf("o = %o\n", n);
+    printf("O = %O\n", n);
+    printf("u = %u\n", n);
+    printf("U = %U\n", n);
+    printf("x = %x\n", n);
+    printf("X = %X\n", n);
+    printf("c = %c\n", str[0]);
+    printf("C = %C\n", str[0]);
+    printf("%%\n");
+    printf("%3.5k\n");
+    printf("%\n");
+    return (0);
 }
