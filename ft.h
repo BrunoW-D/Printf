@@ -23,6 +23,12 @@ typedef struct	s_flags
 	char		modifier[2];
 }				t_flags;
 
+typedef struct	s_data
+{
+	t_flags		flags;
+	int		i;
+}		t_data;
+
 size_t			ft_strlen(const char *str);
 char			*ft_strdup(const char *src);
 char			*ft_strcpy(char *dest, const char *src);
