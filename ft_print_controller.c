@@ -37,22 +37,34 @@ char	*ft_print_controller(char c, va_list ap, t_flags *flags)
 {
 	int		i;
 	char	*str;
+	char	*buff;
 
 	i = 0;
 	while (g_types[i])
 	{
 		if (c == g_types[i])
-			str = ft_realloc(str, (g_p[i](ap, flags)));
+			str = g_p[i](ap, flags);
 		i++;
 	}
-	i = ft_strlen(str);
-	while (i < flags->options[3])
+	if ((i = ft_strlen(str)) < flags->options[3])
 	{
-		if (flags->options[1] == 1)
-			str = ft_realloc(str, " ");
-		else if (flags->options[1] == 2)
-			str = ft_realloc("0", str);
-		i++;
+		if ((buff = ft_strnew(i)) == NULL)
+			return (NULL);
+		if (flags->options[1] == 2)
+		{
+			while (i >= 0)
+				buff[i--] = '0';
+			str = ft_realloc_free(buff, str);
+		}
+		else
+		{
+			while (i >= 0)
+				buff[i--] = ' ';
+			if (flags->options[1] == 1)
+				str = ft_realloc_free(str, buff);
+			else
+				str = ft_realloc_free(buff, str);
+		}
 	}
 	return (str);
 }
