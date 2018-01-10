@@ -19,6 +19,7 @@ int main(void)
     char *str = "Hello world !";
     int    n = 32;
     wchar_t *wstr = L"\x1234";
+    wchar_t wc = L'\x1234';
 
     printf("str = %s, n = %d\n", str, n);
     printf("s =  %s\n", str);
@@ -35,7 +36,8 @@ int main(void)
     printf("x = %x\n", n);
     printf("X = %X\n", n);
     printf("c = %c\n", str[0]);
-    printf("C = %C\n", str[0]);
+    printf("C = %C\n", wc);
+    printf("lc = %lc\n", wc);
     printf("%%\n");
     printf("%3.5k\n");
     printf("%\n");
