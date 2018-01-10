@@ -12,40 +12,47 @@
 
 #include "ft.h"
 
-int        	init_flags(t_flags flags)
+int        	init_data(t_data data)
 {
     int    i;
-
+	t_flags flags;
+	
     i = 0;
+	data->i = i;
     while (i < 5)
     {
         flags->options[i] = 0;
     }
     flags->modifier[0] = 0;
     flags->modifier[1] = 0;
-    return (flags);
+    data->flags = flags;
+	return (data);
 }
 
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		len;
 	char	*str;
-	t_flags		flags;
+	t_data	data;
 	
-	flags = init_flags(flags);
+	data = init_data(data);
 	if (format == NULL)
 		return (0);
-	len = 0;
 	va_start(ap, format);
-	while (*format)
+	str = NULL;
+	while (format[data->i])
 	{
-		if (*format == '%')
-			str = ft_realloc(str, ft_get_flags(format, va_arg(ap, char *), flags));
-		else
-			str = ft_realloc(str, *format);
-		format++;
+		if (format[data->i] == '%')
+		{
+			if ((str = ft_realloc_free(str, ft_strsub(format, 0, data->i))) == NULL)
+				return (NULL);
+			if ((str = ft_realloc_free(str, ft_get_flags(format, va_arg(ap, char *), data))) == NULL)
+				return (NULL);
+		}
+		(data->i)++;
 	}
+	if ((str = ft_realloc_free(str, ft_strsub(format, 0, i))) == NULL)
+		return (NULL);
 	va_end(ap);
 	write(1, str, ft_strlen(str));
 	return (ft_strlen(str));
