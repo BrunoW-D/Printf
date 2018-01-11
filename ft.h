@@ -12,6 +12,7 @@
 
 #ifndef FT_H
 # define FT_H
+# define BUFF_SIZE 32
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -27,6 +28,7 @@ typedef struct	s_data
 {
 	t_flags		flags;
 	int		i;
+	char		buff[BUFF_SIZE + 1]
 }		t_data;
 
 size_t			ft_strlen(const char *str);
