@@ -26,6 +26,7 @@ int        	init_data(t_data data)
     flags->modifier[0] = 0;
     flags->modifier[1] = 0;
     data->flags = flags;
+	ft_bzero(data->buff, BUFF_SIZE + 1);
 	return (data);
 }
 
@@ -53,8 +54,8 @@ int		ft_printf(const char *format, ...)
 		}
 		if (format[data->i] == '\')
 		{
-			if (format[data->i + 1] == '\' || format[data->i + 1] == 'n'
-					|| format[data->i + 1] == 'r' || format[data->i + 1] == 'b'] || format[data->i + 1] == 'v')
+			if (format[data->i + 1] == '\' || format[data->i + 1] == 'n' || format[data->i + 1] == 'r'
+					|| format[data->i + 1] == 'b'] || format[data->i + 1] == 'v')
 				...;
 			else if (format[data->i + 1] == 'x' || format[data->i + 1] == 'X')
 				...;
