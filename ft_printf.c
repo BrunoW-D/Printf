@@ -34,24 +34,43 @@ int		ft_printf(const char *format, ...)
 	va_list	ap;
 	char	*str;
 	t_data	data;
+	int		i;
 	
 	data = init_data(data);
 	if (format == NULL)
 		return (0);
 	va_start(ap, format);
 	str = NULL;
+	i = 0;
 	while (format[data->i])
 	{
-		if (format[data->i] == '%')
+		if (i == BUFF_SIZE)
 		{
-			if ((str = ft_realloc_free(str, ft_strsub(format, 0, data->i))) == NULL)
+			if ((str = ft_realloc(str, data->buff)) == NULL)
+				return (NULL);
+			ft_bzero(data->buff, BUFF_SIZE + 1);
+			i = 0;
+		}
+		if (format[data->i] == '\')
+		{
+			if (format[data->i + 1] == '\' || format[data->i + 1] == 'n'
+					|| format[data->i + 1] == 'r' || format[data->i + 1] == 'b'] || format[data->i + 1] == 'v')
+				...;
+			else if (format[data->i + 1] == 'x' || format[data->i + 1] == 'X')
+				...;
+			else if (format[data->i + 1] >= '0' && format[data->i + 1] <= '7')
+				...;
+		}
+		else if (format[data->i] == '%')
+		{
+			if ((str = ft_realloc(str, data->buff)) == NULL)
 				return (NULL);
 			if ((str = ft_realloc_free(str, ft_get_flags(format, va_arg(ap, char *), data))) == NULL)
 				return (NULL);
 		}
-		(data->i)++;
+		data->buff[i++] = format[(data->i)++];
 	}
-	if ((str = ft_realloc_free(str, ft_strsub(format, 0, i))) == NULL)
+	if ((str = ft_realloc(str, data->buff)) == NULL)
 		return (NULL);
 	va_end(ap);
 	write(1, str, ft_strlen(str));
