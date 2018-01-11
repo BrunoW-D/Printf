@@ -63,7 +63,7 @@ char    *ft_get_flags(const char *format, va_list ap, t_data data)
                 || format[data->i] == 'j' || format[data->i] == 'z')
             get_modifier(data, format);
         else if (is_type_flag(format[data->i]))
-            return (ft_print_controller(format[data->i], ap, data->flags));
+            return (ft_print_controller(format[data->i], ap, data));
         else
             return (ft_strsub(format, i, data->i));
         (data->i)++;
