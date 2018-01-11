@@ -65,6 +65,8 @@ int		ft_printf(const char *format, ...)
 		{
 			if ((str = ft_realloc(str, data->buff)) == NULL)
 				return (NULL);
+			ft_bzero(data->buff, BUFF_SIZE + 1);
+			i = 0;
 			if ((str = ft_realloc_free(str, ft_get_flags(format, va_arg(ap, char *), data))) == NULL)
 				return (NULL);
 		}
