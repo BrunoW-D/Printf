@@ -33,37 +33,72 @@ void	init_p()
 	g_p[13] = ft_print_cc;
 }
 
-char	*ft_print_controller(char c, va_list ap, t_flags *flags)
+char	*ft_print_controller(char c, va_list ap, t_data data)
 {
 	int		i;
 	char	*str;
-	char	*buff;
+	int		len;
 
 	i = 0;
 	while (g_types[i])
 	{
 		if (c == g_types[i])
-			str = g_p[i](ap, flags);
+			str = g_p[i](ap, data->flags);
 		i++;
 	}
-	if ((i = ft_strlen(str)) < flags->options[3])
+	if ((len = ft_strlen(str)) < flags->options[3])
 	{
-		if ((buff = ft_strnew(i)) == NULL)
-			return (NULL);
-		if (flags->options[1] == 2)
+		i = 0;
+		if (data->flags->options[1] == 2)
 		{
-			while (i >= 0)
-				buff[i--] = '0';
-			str = ft_realloc_free(buff, str);
+			while (i < len)
+			{
+				if (i == BUFF_SIZE)
+				{
+					if ((str = ft_realloc_free(data->buff, str)) = NULL)
+						return (NULL);
+					ft_bzero(data->buff, BUFF_SIZE + 1);
+					i = 0;
+					len -= i;
+				}
+				data->buff[i++] = '0';
+			}
+			if ((str = ft_realloc_free(data->buff, str)) == NULL)
+				return (NULL);
 		}
-		else
+		else if (data->flags->options[1] == 1)
 		{
-			while (i >= 0)
-				buff[i--] = ' ';
-			if (flags->options[1] == 1)
-				str = ft_realloc_free(str, buff);
-			else
-				str = ft_realloc_free(buff, str);
+			while (i < len)
+			{
+				if (i == BUFF_SIZE)
+				{
+					if ((str = ft_realloc(str, data->buff)) == NULL)
+						return (NULL);
+					ft_bzero(data->buff, BUFF_SIZE + 1);
+					i = 0;
+					len -= i;
+				}
+				data->buff[i++] = ' ';
+				if ((str = ft_realloc(str, data->buff)) == NULL)
+					return (NULL);
+			}
+		}
+		else if (data->flags->options[1] == 0)
+		{
+			while (i < len)
+			{
+				if (i == BUFF_SIZE)
+				{
+					if ((str = ft_realloc_free(data->buff, str)) == NULL)
+						return (NULL);
+					ft_bzero(data->buff, BUFF_SIZE + 1);
+					i = 0;
+					len -= i;
+				}
+				data->buff[i++] = ' ';
+			}
+			if ((str = ft_realloc_free(data->buff, str)) == NULL)
+				return (NULL);
 		}
 	}
 	return (str);
