@@ -52,7 +52,7 @@ int		ft_printf(const char *format, ...)
 			ft_bzero(data->buff, BUFF_SIZE + 1);
 			i = 0;
 		}
-		if (format[data->i] == '\')
+		else if (format[data->i] == '\')
 		{
 			if (format[data->i + 1] == '\' || format[data->i + 1] == 'n' || format[data->i + 1] == 'r'
 					|| format[data->i + 1] == 'b'] || format[data->i + 1] == 'v')
@@ -71,7 +71,8 @@ int		ft_printf(const char *format, ...)
 			if ((str = ft_realloc_free(str, ft_get_flags(format, va_arg(ap, char *), data))) == NULL)
 				return (NULL);
 		}
-		data->buff[i++] = format[(data->i)++];
+		else
+			data->buff[i++] = format[(data->i)++];
 	}
 	if ((str = ft_realloc(str, data->buff)) == NULL)
 		return (NULL);
