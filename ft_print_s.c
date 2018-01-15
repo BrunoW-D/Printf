@@ -22,7 +22,7 @@ int		ft_print_s(va_list ap, t_flags *flags)
 	if (flags->modifier[0] == flags->modifier[1] == 'l')
 		return (NULL);
 	else if (flags->modifier[0] == 'l')
-		return (ft_print_ss(ap, flags);
+		return (ft_print_ls(ap, flags);
 	i = 0;
 	while (str[i] && i < flags->options[4])
 		i++;
