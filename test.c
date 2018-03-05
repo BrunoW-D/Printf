@@ -41,5 +41,7 @@ int main(void)
     printf("%%\n");
     printf("%3.5k\n");
     printf("%\n");
+    printf("%\x68.d\n", n);
+    printf("%\104d\n", n);
     return (0);
 }
