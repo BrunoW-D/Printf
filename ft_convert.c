@@ -35,6 +35,19 @@ void    get_modifier(const char *format, t_data data)
     (data->i)++;
 }
 
+void	bs_case(const char *format, t_data data)
+{
+	(data->i)++;
+	if (format[data->i] == 'n')
+	else if (format[data->i] == 'r')
+	else if (format[data->i] == 'b')
+	else if (format[data->i] == 'v')
+	else if (format[data->i] == '\')
+	else if (format[data->i] == 'x')
+	else if (format[data->i] == 'X')
+	else if (format[data->i] >= '0' && format[data->i] <= '7')
+}
+
 char    *ft_get_flags(const char *format, va_list ap, t_data data)
 {
     int		i;
@@ -42,7 +55,9 @@ char    *ft_get_flags(const char *format, va_list ap, t_data data)
 	i = data->i;
     while (format[data->i])
     {
-        if (format[data->i] == '#')
+		if (format[data->i] == '\')
+			bs_case(data, format);
+        else if (format[data->i] == '#')
             data->flags->options[0] = 1;
         else if (format[data->i] == '-')
             data->flags->options[1] = 1;
@@ -57,7 +72,7 @@ char    *ft_get_flags(const char *format, va_list ap, t_data data)
         else if (format[data->i] == '.')
 		{
 			(data->i)++;
-            data->flags->options[4] = get_num(format, data);
+        	data->flags->options[4] = get_num(format, data);
 		}
 		else if (format[data->i] == 'h' || format[data->i] == 'l'
                 || format[data->i] == 'j' || format[data->i] == 'z')
