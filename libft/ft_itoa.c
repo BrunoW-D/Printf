@@ -1,51 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_base.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 11:14:49 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 16:38:35 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/10 10:27:14 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/13 18:19:59 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
 static char	*ft_init_negative(int len, long *nb)
 {
-	char	*nbr;
+	char	*str;
 
-	if ((nbr = ft_strnew(len)) == NULL)
+	if ((str = ft_strnew(len)) == NULL)
 		return (NULL);
-	nbr[0] = '-';
+	str[0] = '-';
 	*nb *= -1;
-	return (nbr);
+	return (str);
 }
 
-char		*ft_base(int n, int base)
+char		*ft_itoa(int n)
 {
+	char		*str;
 	long		nb;
 	int			len;
-	char		*nbr;
 
-	if (base < 1 || base > 36)
-		return (NULL);
 	if (n == 0)
 		return (ft_strdup("0"));
 	nb = n;
 	len = 1;
-	while (nb /= base)
+	while (nb /= 10)
 		len++;
 	nb = n;
-	if (n < 0 && ((nbr = ft_init_negative(++len, &nb)) == NULL))
-		return (NULL);
-	if (n > 0 && ((nbr = ft_strnew(len)) == NULL))
-		return (NULL);
-	while (nb > 0)
+	if (n < 0)
 	{
-		nbr[--len] = nb % base < 10 ? nb % base + 48 : nb % base + 55;
-		nb /= base;
+		if ((str = ft_init_negative(++len, &nb)) == NULL)
+			return (NULL);
 	}
-	return (nbr);
+	else if ((str = ft_strnew(len)) == NULL)
+		return (NULL);
+	while (len-- > 0 && nb)
+	{
+		str[len] = nb % 10 + 48;
+		nb /= 10;
+	}
+	return (str);
 }

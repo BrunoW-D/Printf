@@ -11,7 +11,7 @@ int        is_type_flag(const char c)
         return (0);
 }
 
-int     get_num(const char *format, t_data data)
+int     get_num(const char *format, t_data *data)
 {
   int n;
   
@@ -25,39 +25,24 @@ int     get_num(const char *format, t_data data)
   return (n);
 }
 
-void    get_modifier(const char *format, t_data data)
+void    get_modifier(const char *format, t_data *data)
 { 
     data->flags->modifier[0] = format[data->i];
     data->flags->modifier[1] = 0;
-    if (format[data->i] == 'h' && format[data->i + 1] == 'h')
-            || (format[data->i] == 'l' && format[data->i + 1] == 'l'))
-        data->flags->modifier[1] = format[(data->i)++];
+    if ((format[data->i] == 'h' && format[data->i + 1] == 'h')
+			|| (format[data->i] == 'l' && format[data->i + 1] == 'l'))
+    	data->flags->modifier[1] = format[(data->i)++];
     (data->i)++;
 }
 
-void	bs_case(const char *format, t_data data)
-{
-	(data->i)++;
-	if (format[data->i] == 'n')
-	else if (format[data->i] == 'r')
-	else if (format[data->i] == 'b')
-	else if (format[data->i] == 'v')
-	else if (format[data->i] == '\')
-	else if (format[data->i] == 'x')
-	else if (format[data->i] == 'X')
-	else if (format[data->i] >= '0' && format[data->i] <= '7')
-}
-
-char    *ft_get_flags(const char *format, va_list ap, t_data data)
+char    *ft_get_flags(const char *format, va_list ap, t_data *data)
 {
     int		i;
 	
 	i = data->i;
     while (format[data->i])
     {
-		if (format[data->i] == '\')
-			bs_case(data, format);
-        else if (format[data->i] == '#')
+        if (format[data->i] == '#')
             data->flags->options[0] = 1;
         else if (format[data->i] == '-')
             data->flags->options[1] = 1;
@@ -76,7 +61,7 @@ char    *ft_get_flags(const char *format, va_list ap, t_data data)
 		}
 		else if (format[data->i] == 'h' || format[data->i] == 'l'
                 || format[data->i] == 'j' || format[data->i] == 'z')
-            get_modifier(data, format);
+            get_modifier(format, data);
         else if (is_type_flag(format[data->i]))
             return (ft_print_controller(format[data->i], ap, data));
         else

@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:16 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/01/04 14:44:29 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/07 15:13:51 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(void)
     int    n = 32;
     wchar_t *wstr = L"\x1234";
     wchar_t wc = L'\x1234';
+	char *esc = "Hel\154o world !";
 
     printf("str = %s, n = %d\n", str, n);
     printf("s =  %s\n", str);
@@ -41,7 +42,17 @@ int main(void)
     printf("%%\n");
     printf("%3.5k\n");
     printf("%\n");
-    printf("%\x68.d\n", n);
-    printf("%\104d\n", n);
+	printf("%\x0A");
+    printf("\x40%d\n", n);
+    printf("\105%d\n", n);
+	printf("%\105.5d\n", n);
+	printf("%dd\n", n);
+	printf("%hello world\n", n);
+	printf("\k%d\n", n);
+	while (*esc)
+	{
+		printf("%c", *esc);
+		esc++;
+	}
     return (0);
 }

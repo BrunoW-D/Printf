@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/07 17:35:14 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/13 17:46:14 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+char	*ft_strtrim(char const *s)
 {
-	char	*tmp;
+	char	*dst;
 	int		i;
+	int		j;
+	int		k;
 
-	if (!str1 && !str2)
+	if (!s)
 		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
+	i = 0;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	j = i;
+	while (s[j])
+		j++;
+	j--;
+	while (j > i && (s[j] == ' ' || s[j] == '\n' || s[j] == '\t'))
+		j--;
+	if ((dst = ft_strnew(j - i + 1)) == NULL)
 		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	k = 0;
+	while (i + k <= j)
+	{
+		dst[k] = s[i + k];
+		k++;
+	}
+	return (dst);
 }

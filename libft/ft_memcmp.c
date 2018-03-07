@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/10 10:11:34 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/15 11:36:01 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*tmp;
-	int		i;
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-	if (!str1 && !str2)
-		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
-		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	i = 0;
+	str1 = (const unsigned char*)s1;
+	str2 = (const unsigned char*)s2;
+	while (i < n)
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
 }

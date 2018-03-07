@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/07 18:33:09 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/13 16:03:18 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	char	*tmp;
-	int		i;
-
-	if (!str1 && !str2)
-		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
-		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	if (!s1 || !s2)
+		return (0);
+	if (ft_strncmp((char*)s1, (char*)s2, n))
+		return (0);
+	else
+		return (1);
 }

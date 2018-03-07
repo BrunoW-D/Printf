@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/10 11:35:39 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/13 16:46:16 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*tmp;
 	int		i;
 
-	if (!str1 && !str2)
-		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
-		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	i = ft_strlen((char*)s);
+	if (!c)
+		return ((char*)s + i);
+	while (s[i] != c && i >= 0)
+		i--;
+	if (i >= 0)
+		return ((char*)s + i);
+	return (NULL);
 }

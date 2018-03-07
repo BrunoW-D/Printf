@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/10 11:42:27 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/10 16:37:40 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	char	*tmp;
-	int		i;
+	size_t	i;
+	size_t	j;
 
-	if (!str1 && !str2)
-		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
-		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	if (!*to_find)
+		return ((char*)str);
+	i = 0;
+	while (str[i] && i < len)
+	{
+		if (str[i] == *to_find)
+		{
+			j = 0;
+			while (str[i + j] && to_find[j] && str[i + j] == to_find[j]
+					&& i + j < len)
+				j++;
+			if (!to_find[j])
+				return ((char*)str + i);
+		}
+		i++;
+	}
+	return (NULL);
 }

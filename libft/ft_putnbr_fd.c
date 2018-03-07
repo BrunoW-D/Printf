@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/10 13:28:56 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/10 14:12:45 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*tmp;
-	int		i;
+	long int	nb;
+	int			div;
 
-	if (!str1 && !str2)
-		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
-		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	if (n == 0)
+		ft_putchar_fd('0', fd);
+	else
+	{
+		nb = n;
+		div = 1;
+		while (nb /= 10)
+			div *= 10;
+		nb = n;
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			nb *= -1;
+		}
+		while (div)
+		{
+			ft_putchar_fd(((nb / div) % 10) + 48, fd);
+			div /= 10;
+		}
+	}
 }

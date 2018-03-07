@@ -1,6 +1,6 @@
 #include "ft.h"
 
-char	*ft_realloc(char *str1, char *str2)
+char	*ft_realloc_free(char *str1, char *str2)
 {
 	char	*tmp;
 	int		i;

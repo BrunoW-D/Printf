@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 12:27:24 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:38:17 by bwang-do         ###   ########.fr       */
+/*   Created: 2017/11/10 10:08:53 by bwang-do          #+#    #+#             */
+/*   Updated: 2017/11/15 11:32:44 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "libft.h"
 
-char	*ft_realloc(char *str1, const char *str2)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	char	*tmp;
-	int		i;
+	size_t		i;
+	const char	*s;
+	char		*d;
 
-	if (!str1 && !str2)
-		return (NULL);
-	if (!str1 && str2)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (str1);
-	tmp = ft_strdup(str1);
-	if ((str1 = ft_strnew(ft_strlen(str1) + ft_strlen(str2))) == NULL)
-		return (NULL);
-	str1 = ft_strcpy(str1, tmp);
-	str1 = ft_strcat(str1, str2);
-	free(tmp);
-	return (str1);
+	s = (const char*)src;
+	d = (char*)dst;
+	if (d != s)
+	{
+		if (d > s)
+		{
+			i = n;
+			while (i-- > 0)
+				d[i] = s[i];
+		}
+		else
+		{
+			i = 0;
+			while (i < n)
+			{
+				d[i] = s[i];
+				i++;
+			}
+		}
+	}
+	return (dst);
 }

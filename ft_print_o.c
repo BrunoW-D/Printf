@@ -1,6 +1,6 @@
 #include "ft.h"
 
-int		ft_print_o(va_list ap, t_flags *flags)
+char	*ft_print_o(va_list ap, t_flags *flags)
 {
 	unsigned int	o;
 	char			*ret;
