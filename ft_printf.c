@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:03:57 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:17:57 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_data	*init_data(t_data *data)
 {
-    int    i;
-	t_flags *flags;
-	
-    i = 0;
+	int		i;
+	t_flags	*flags;
+
+	i = 0;
 	data->i = i;
-    while (i < 5)
-    {
-        flags->options[i] = 0;
-    }
-    flags->modifier[0] = 0;
-    flags->modifier[1] = 0;
-    data->flags = flags;
+	while (i < 5)
+	{
+		flags->options[i] = 0;
+	}
+	flags->modifier[0] = 0;
+	flags->modifier[1] = 0;
+	data->flags = flags;
 	ft_bzero(data->buff, BUFF_SIZE + 1);
 	return (data);
 }
@@ -36,7 +36,7 @@ int		ft_printf(const char *format, ...)
 	char	*str;
 	t_data	*data;
 	int		i;
-	
+
 	data = init_data(data);
 	if (format == NULL)
 		return (0);

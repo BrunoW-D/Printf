@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:54:24 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:21:26 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*(*g_p[14]) (va_list ap, t_flags *flags);
 static char	*g_types = "sSpdDioOuUxXcC";
 
-void	init_p()
+void	init_p(void)
 {
 	g_p[0] = ft_print_s;
 	g_p[1] = ft_print_ls;

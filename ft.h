@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:02:37 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/07 18:24:57 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef struct	s_flags
 typedef struct	s_data
 {
 	t_flags		*flags;
-	int		i;
+	int			i;
 	char		buff[BUFF_SIZE + 1];
-}		t_data;
+}				t_data;
 
 void			ft_bzero(void *str, size_t n);
 size_t			ft_strlen(const char *str);
@@ -44,9 +44,9 @@ char			*ft_strndup(const char *src, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_itoa(int n);
 
-char    		*ft_get_flags(const char *format, va_list ap, t_data *data);
+char			*ft_get_flags(const char *format, va_list ap, t_data *data);
 char			*ft_print_controller(char c, va_list ap, t_data *data);
-char			*ft_nchar (char c, size_t n);
+char			*ft_nchar(char c, size_t n);
 char			*ft_realloc(char *str1, const char *str2);
 char			*ft_realloc_free(char *str1, char *str2);
 char			*ft_base(int n, int base);
