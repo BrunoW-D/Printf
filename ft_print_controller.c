@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:21:26 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:02:08 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 		if ((str = ft_realloc_free(ft_nchar(' ', data->flags->options[3]), str)) == NULL)
 			return (NULL);
 	}
+	data->total += ft_strlen(str);
 	return (str);
 }

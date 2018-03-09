@@ -6,13 +6,13 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 15:39:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:17:17 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:31:22 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-void	ft_wchar_to_char(wchar_t wc)
+char	*ft_wchar_to_char(wchar_t wc)
 {
 	char	str[5];
 	int		i;
@@ -43,5 +43,5 @@ void	ft_wchar_to_char(wchar_t wc)
 		str[2] = (char)((wc >> 6 & 0x3f) | 0x80);
 		str[3] = (char)((wc & 0x3f) | 0x80);
 	}
-	write(1, str, strlen(str));
+	return(ft_strdup(str));
 }

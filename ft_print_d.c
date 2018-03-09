@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:19:49 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/09 17:44:55 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 	else if (flags->modifier[0] == 'l')
 		n = va_arg(ap, long int);
 	else if (flags->modifier[0] == 'h')
-		n = va_arg(ap, short int);
+		n = (short)va_arg(ap, int);
+	else
+		n = va_arg(ap, int);
 	ret = ft_itoa(n);
 	i = 0;
 	while (ret[i] && i < flags->options[4])

@@ -6,7 +6,7 @@
 #    By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:37:42 by bwang-do          #+#    #+#              #
-#    Updated: 2018/03/07 17:22:18 by bwang-do         ###   ########.fr        #
+#    Updated: 2018/03/09 17:36:48 by bwang-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 CC = gcc
 
-NAME = fillit
+NAME = printf
 
 SRC = ft_convert.c \
 	  ft_realloc.c \
@@ -25,10 +25,15 @@ SRC = ft_convert.c \
 	  ft_nchar.c \
 	  ft_printf.c \
 	  ft_print_s.c \
+	  ft_print_ls.c \
 	  ft_print_c.c \
+	  ft_print_lc.c \
 	  ft_print_d.c \
+	  ft_print_ld.c \
 	  ft_print_o.c \
+	  ft_print_lo.c \
 	  ft_print_x.c \
+	  main.c \
 
 OBJ = $(SRC:.c=.o)
 

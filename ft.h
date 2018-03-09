@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:24:57 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/09 18:12:42 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <wchar.h>
+
+# include <stdio.h>
 
 typedef struct	s_flags
 {
@@ -29,6 +31,7 @@ typedef struct	s_data
 	t_flags		*flags;
 	int			i;
 	char		buff[BUFF_SIZE + 1];
+	int			total;
 }				t_data;
 
 void			ft_bzero(void *str, size_t n);
@@ -50,6 +53,8 @@ char			*ft_nchar(char c, size_t n);
 char			*ft_realloc(char *str1, const char *str2);
 char			*ft_realloc_free(char *str1, char *str2);
 char			*ft_base(int n, int base);
+char			*ft_wchar_to_char(wchar_t wc);
+int				ft_printf(const char *format, ...);
 
 char			*ft_print_c(va_list ap, t_flags *flags);
 char			*ft_print_lc(va_list ap, t_flags *flags);

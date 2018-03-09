@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:19 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:19:22 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/09 17:49:29 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*ft_realloc_free(char *str1, char *str2)
 {
 	char	*tmp;
-	int		i;
 
 	if (!str1 && !str2)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:17:57 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/09 18:16:29 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_data	*init_data(t_data *data)
 
 	i = 0;
 	data->i = i;
+	flags = NULL;
 	while (i < 5)
 	{
 		flags->options[i] = 0;
@@ -26,6 +27,7 @@ t_data	*init_data(t_data *data)
 	flags->modifier[0] = 0;
 	flags->modifier[1] = 0;
 	data->flags = flags;
+	data->total = 0;
 	ft_bzero(data->buff, BUFF_SIZE + 1);
 	return (data);
 }
@@ -37,6 +39,8 @@ int		ft_printf(const char *format, ...)
 	t_data	*data;
 	int		i;
 
+	printf("k\n");
+	data = NULL;
 	data = init_data(data);
 	if (format == NULL)
 		return (0);

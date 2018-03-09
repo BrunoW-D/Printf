@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ld.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 15:35:59 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 15:34:29 by bwang-do         ###   ########.fr       */
+/*   Created: 2018/03/09 17:34:33 by bwang-do          #+#    #+#             */
+/*   Updated: 2018/03/09 17:35:48 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_ld(va_list ap, t_flags *flags)
+int		main(void)
 {
-	flags->modifier[0] = 'l';
-	return (ft_print_d(ap, flags));
+	char	*str = "Hello World !";
+
+	ft_printf("%s\n", str);
+	return (0);
 }
