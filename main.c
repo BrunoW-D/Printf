@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 17:34:33 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 17:35:48 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:35:12 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int		main(void)
 {
-	char	*str = "Hello World !";
+	char	*str = "World !";
+	int		len;
 
-	ft_printf("%s\n", str);
+	len = ft_printf("Hello %s\n", str);
+	ft_printf("len = %d\n", len);
 	return (0);
 }

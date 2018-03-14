@@ -6,13 +6,13 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 18:12:42 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 14:59:33 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_H
 # define FT_H
-# define BUFF_SIZE 32
+# define BUFF_SIZE 4
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>

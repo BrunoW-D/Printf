@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 18:16:29 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:58:49 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ t_data	*init_data(t_data *data)
 	int		i;
 	t_flags	*flags;
 
+	if ((data = (t_data*)malloc(sizeof(t_data))) == NULL)
+		return (NULL);
+	if ((flags = (t_flags*)malloc(sizeof(t_flags))) == NULL)
+		return (NULL);
+	data->i = 0;
 	i = 0;
-	data->i = i;
-	flags = NULL;
 	while (i < 5)
 	{
 		flags->options[i] = 0;
+		i++;
 	}
 	flags->modifier[0] = 0;
 	flags->modifier[1] = 0;
@@ -39,7 +43,6 @@ int		ft_printf(const char *format, ...)
 	t_data	*data;
 	int		i;
 
-	printf("k\n");
 	data = NULL;
 	data = init_data(data);
 	if (format == NULL)

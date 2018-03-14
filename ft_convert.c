@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 18:21:55 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:59:18 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		is_type_flag(const char c)
 {
-	if (c == 's' || c == 'S' || c == 'p' || c == 'D' || c == 'i' || c == 'o'
-			|| c == 'O' || c == 'u' || c == 'U' || c == 'x' || c == 'X'
-			|| c == 'c' || c == 'C')
+	if (c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D'
+			|| c == 'i' || c == 'o' || c == 'O' || c == 'u' || c == 'U'
+			|| c == 'x' || c == 'X' || c == 'c' || c == 'C')
 		return (1);
 	else
 		return (0);
@@ -51,6 +51,7 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 	int		i;
 
 	i = data->i;
+	(data->i)++;
 	while (format[data->i])
 	{
 		if (format[data->i] == '#')
@@ -74,9 +75,9 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 				|| format[data->i] == 'j' || format[data->i] == 'z')
 			get_modifier(format, data);
 		else if (is_type_flag(format[data->i]))
-			return (ft_print_controller(format[data->i], ap, data));
+			return (ft_print_controller(format[(data->i)++], ap, data));
 		else
-			return (ft_strsub(format, i, data->i));
+			return (ft_strsub(format, i, (data->i)++ - i));
 		(data->i)++;
 	}
 	return (ft_strsub(format, i, data->i));

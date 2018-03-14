@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:54:27 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 14:43:09 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:59:52 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ char	*ft_print_s(va_list ap, t_flags *flags)
 		return (NULL);
 	else if (flags->modifier[0] == 'l')
 		return (ft_print_ls(ap, flags));
-	i = 0;
-	while (str[i] && i < flags->options[4])
-		i++;
+	i = ft_strlen(str);
+	while (i < flags->options[4] && i > 0)
+		i--;
 	ret = ft_strsub(str, 0, i);
+	printf("ret = %s\n", ret);
 	return (ret);
 }

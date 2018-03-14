@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 17:44:55 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:59:43 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 		ret = ft_realloc_free(0, ret);
 		i++;
 	}
+	printf("ret = %s\n", ret);
 	return (ret);
 }

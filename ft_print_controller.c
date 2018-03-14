@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/09 15:02:08 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 18:00:14 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 	int		i;
 	char	*str;
 
+	init_p();
+	printf("%c\n", c);
 	i = 0;
-	while (g_types[i])
+	while (i <= 13)
 	{
 		if (c == g_types[i])
 			str = g_p[i](ap, data->flags);
