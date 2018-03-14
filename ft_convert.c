@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/14 17:59:18 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/14 18:04:47 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		get_num(const char *format, t_data *data)
 }
 
 void	get_modifier(const char *format, t_data *data)
-{ 
+{
 	data->flags->modifier[0] = format[data->i];
 	data->flags->modifier[1] = 0;
 	if ((format[data->i] == 'h' && format[data->i + 1] == 'h')
