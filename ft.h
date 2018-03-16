@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/14 14:59:33 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:49:54 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ char			*ft_print_o(va_list ap, t_flags *flags);
 char			*ft_print_lo(va_list ap, t_flags *flags);
 char			*ft_print_x(va_list ap, t_flags *flags);
 char			*ft_print_lx(va_list ap, t_flags *flags);
+char			*ft_print_p(va_list ap, t_flags *flags);
 
 #endif

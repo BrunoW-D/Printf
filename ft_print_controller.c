@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/14 18:00:14 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:48:28 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_p(void)
 {
 	g_p[0] = ft_print_s;
 	g_p[1] = ft_print_ls;
-	g_p[2] = ft_print_d;
+	g_p[2] = ft_print_p;
 	g_p[3] = ft_print_d;
 	g_p[4] = ft_print_ld;
 	g_p[5] = ft_print_d;
@@ -37,6 +37,8 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 {
 	int		i;
 	char	*str;
+	int		len;
+	int		width;
 
 	init_p();
 	printf("%c\n", c);
@@ -47,20 +49,25 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 			str = g_p[i](ap, data->flags);
 		i++;
 	}
-	if (data->flags->options[1] == 2)
+	len = ft_strlen(str);
+	width = data->flags->options[3];
+	if (width > len)
 	{
-		if ((str = ft_realloc_free(ft_nchar('0', data->flags->options[3]), str)) == NULL)
-			return (NULL);
-	}
-	else if (data->flags->options[1] == 1)
-	{
-		if ((str = ft_realloc_free(str, ft_nchar(' ', data->flags->options[3]))) == NULL)
-			return (NULL);
-	}
-	else if (data->flags->options[1] == 0)
-	{
-		if ((str = ft_realloc_free(ft_nchar(' ', data->flags->options[3]), str)) == NULL)
-			return (NULL);
+		if (data->flags->options[1] == 2)
+		{
+			if (!(str = ft_realloc_free(ft_nchar('0', width - len), str)))
+				return (NULL);
+		}
+		else if (data->flags->options[1] == 1)
+		{
+			if (!(str = ft_realloc_free(str, ft_nchar(' ', width - len))))
+				return (NULL);
+		}
+		else if (data->flags->options[1] == 0)
+		{
+			if (!(str = ft_realloc_free(ft_nchar(' ', width - len), str)))
+				return (NULL);
+		}
 	}
 	data->total += ft_strlen(str);
 	return (str);

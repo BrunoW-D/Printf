@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/14 18:04:47 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:12:51 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ int		get_num(const char *format, t_data *data)
 	int n;
 
 	n = 0;
+	if (format[data->i] == '.')
+		(data->i)++;
 	while (format[data->i] >= '0' && format[data->i] <= '9')
 	{
 		n *= 10;
-		n += format[data->i];
+		n += format[data->i] - 48;
 		(data->i)++;
 	}
+	(data->i)--;
 	return (n);
 }
 
@@ -67,17 +70,17 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 		else if (format[data->i] >= '1' && format[data->i] <= '9')
 			data->flags->options[3] = get_num(format, data);
 		else if (format[data->i] == '.')
-		{
-			(data->i)++;
 			data->flags->options[4] = get_num(format, data);
-		}
 		else if (format[data->i] == 'h' || format[data->i] == 'l'
 				|| format[data->i] == 'j' || format[data->i] == 'z')
 			get_modifier(format, data);
 		else if (is_type_flag(format[data->i]))
 			return (ft_print_controller(format[(data->i)++], ap, data));
 		else
+		{
+			printf("oops\n");
 			return (ft_strsub(format, i, (data->i)++ - i));
+		}
 		(data->i)++;
 	}
 	return (ft_strsub(format, i, data->i));

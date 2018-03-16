@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/14 17:58:49 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/16 17:18:58 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ t_data	*init_data(t_data *data)
 	data->flags = flags;
 	data->total = 0;
 	ft_bzero(data->buff, BUFF_SIZE + 1);
+	return (data);
+}
+
+t_data	*reset_data(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (i < 5)
+	{
+		data->flags->options[i] = 0;
+		i++;
+	}
+	data->flags->modifier[0] = 0;
+	data->flags->modifier[1] = 0;
 	return (data);
 }
 
@@ -67,6 +82,7 @@ int		ft_printf(const char *format, ...)
 			i = 0;
 			if ((str = ft_realloc_free(str, ft_get_flags(format, ap, data))) == NULL)
 				return (0);
+			data = reset_data(data);
 		}
 		else
 			data->buff[i++] = format[(data->i)++];
