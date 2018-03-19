@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/16 17:48:28 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/19 15:27:04 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_p(void)
 	g_p[5] = ft_print_d;
 	g_p[6] = ft_print_o;
 	g_p[7] = ft_print_lo;
-	g_p[8] = ft_print_d;
-	g_p[9] = ft_print_d;
+	g_p[8] = ft_print_u;
+	g_p[9] = ft_print_lu;
 	g_p[10] = ft_print_x;
 	g_p[11] = ft_print_lx;
 	g_p[12] = ft_print_c;

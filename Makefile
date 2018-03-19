@@ -6,7 +6,7 @@
 #    By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:37:42 by bwang-do          #+#    #+#              #
-#    Updated: 2018/03/09 17:36:48 by bwang-do         ###   ########.fr        #
+#    Updated: 2018/03/19 18:07:42 by bwang-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@
 
 CC = gcc
 
-NAME = printf
+LDFLAGS = -L ./libft/ -l lft
+
+NAME = libftprintf.a
 
 SRC = ft_convert.c \
 	  ft_realloc.c \
@@ -23,6 +25,8 @@ SRC = ft_convert.c \
 	  ft_print_controller.c \
 	  ft_base.c \
 	  ft_nchar.c \
+	  new_itoa.c \
+	  ft_utoa.c \
 	  ft_printf.c \
 	  ft_print_s.c \
 	  ft_print_ls.c \
@@ -33,7 +37,10 @@ SRC = ft_convert.c \
 	  ft_print_o.c \
 	  ft_print_lo.c \
 	  ft_print_x.c \
-	  main.c \
+	  ft_print_lx.c \
+	  ft_print_u.c \
+	  ft_print_lu.c \
+	  ft_print_p.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -43,7 +50,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ) ft.h
 	make -C ./libft/ all
-	$(CC) -o $@ $(OBJ) -L ./libft/ -lft
+	ar rc $(NAME) $?
+	ranlib $(NAME)
 
 %.o : %.c ft.h
 	$(CC) -c $<  

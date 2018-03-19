@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_d.c                                       :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/19 15:19:54 by bwang-do         ###   ########.fr       */
+/*   Created: 2018/03/19 15:21:11 by bwang-do          #+#    #+#             */
+/*   Updated: 2018/03/19 15:25:34 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_d(va_list ap, t_flags *flags)
+char	*ft_print_u(va_list ap, t_flags *flags)
 {
-	long long int	n;
-	char			*ret;
-	int				len;
+	unsigned long long int	n;
+	char					*ret;
+	int						len;
 
 	if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'l')
-		n = va_arg(ap, long long int);
+		n = va_arg(ap, unsigned long long int);
 	else if (flags->modifier[0] == 'l')
-		n = va_arg(ap, long int);
+		n = va_arg(ap, unsigned long int);
 	else if (flags->modifier[0] == 'h')
-		n = (short)va_arg(ap, int);
+		n = (short)va_arg(ap, unsigned int);
 	else
-		n = va_arg(ap, int);
-	if ((ret = new_itoa(n)) == NULL)
+		n = va_arg(ap, unsigned int);
+	if ((ret = ft_utoa(n)) == NULL)
 		return (NULL);
 	len = ft_strlen(ret);
 	if (flags->options[4] > len)

@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/16 15:12:51 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:41:16 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	get_modifier(const char *format, t_data *data)
 	if ((format[data->i] == 'h' && format[data->i + 1] == 'h')
 			|| (format[data->i] == 'l' && format[data->i + 1] == 'l'))
 		data->flags->modifier[1] = format[(data->i)++];
-	(data->i)++;
 }
 
 char	*ft_get_flags(const char *format, va_list ap, t_data *data)
@@ -78,7 +77,7 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 			return (ft_print_controller(format[(data->i)++], ap, data));
 		else
 		{
-			printf("oops\n");
+			printf("oops : %c\n", format[data->i]);
 			return (ft_strsub(format, i, (data->i)++ - i));
 		}
 		(data->i)++;
