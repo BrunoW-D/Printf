@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/19 17:41:16 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/05/30 16:10:32 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 			return (ft_print_controller(format[(data->i)++], ap, data));
 		else
 		{
-			printf("oops : %c\n", format[data->i]);
 			return (ft_strsub(format, i, (data->i)++ - i));
 		}
 		(data->i)++;

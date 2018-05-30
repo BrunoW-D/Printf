@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/19 15:19:54 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/05/30 19:04:01 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 char	*ft_print_d(va_list ap, t_flags *flags)
 {
-	long long int	n;
-	char			*ret;
-	int				len;
+	long long	n;
+	char		*ret;
+	int			len;
 
 	if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'l')
-		n = va_arg(ap, long long int);
+		n = va_arg(ap, long long);
 	else if (flags->modifier[0] == 'l')
-		n = va_arg(ap, long int);
+		n = va_arg(ap, long);
+	else if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'h')
+		n = (char)va_arg(ap, int);
 	else if (flags->modifier[0] == 'h')
 		n = (short)va_arg(ap, int);
 	else

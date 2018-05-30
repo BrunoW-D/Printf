@@ -6,15 +6,13 @@
 #    By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:37:42 by bwang-do          #+#    #+#              #
-#    Updated: 2018/03/19 18:07:42 by bwang-do         ###   ########.fr        #
+#    Updated: 2018/05/30 19:50:35 by bwang-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all re clean fclean norme normelib
 
 CC = gcc
-
-LDFLAGS = -L ./libft/ -l lft
 
 NAME = libftprintf.a
 
@@ -41,33 +39,48 @@ SRC = ft_convert.c \
 	  ft_print_u.c \
 	  ft_print_lu.c \
 	  ft_print_p.c \
+	  ft_strlower.c \
+	  ft_strupper.c \
+
+LIB_SRC = ft_bzero.c \
+		  ft_memset.c \
+		  ft_strlen.c \
+		  ft_strdup.c \
+		  ft_strcpy.c \
+		  ft_strcat.c \
+		  ft_isdigit.c \
+		  ft_strnew.c \
+		  ft_putchar.c \
+		  ft_putstr.c \
+		  ft_strsub.c \
 
 OBJ = $(SRC:.c=.o)
+
+LIB_OBJ = $(LIB_SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ) ft.h
-	make -C ./libft/ all
-	ar rc $(NAME) $?
+$(NAME): $(OBJ) $(LIB_OBJ)
+	ar rc $(NAME) $(OBJ) $(LIB_OBJ)
 	ranlib $(NAME)
 
-%.o : %.c ft.h
+%.o : %.c
 	$(CC) -c $<  
 
+%.o : ./libft/%.c
+	$(CC) -c $<
+
 clean:
-	/bin/rm -f $(OBJ)
-	make  -C ./libft/ fclean
+	/bin/rm -f $(OBJ) $(LIB_OBJ)
 
 fclean: clean
 	/bin/rm -f $(NAME)
 
 norme : 
 	norminette $(SRC)
+	norminette $(addprefix ./libft/, $(LIB_SRC))
 	norminette ft.h
-
-normelib :
-	make -C ./libft/ norme
 
 re: fclean all

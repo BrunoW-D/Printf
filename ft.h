@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/19 15:47:49 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/05/30 19:50:54 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 
 char			*new_itoa(long long n);
 char			*ft_utoa(unsigned long long n);
+char			*ft_strlower(char *str);
+char			*ft_strupper(char *str);
 
 char			*ft_get_flags(const char *format, va_list ap, t_data *data);
 char			*ft_print_controller(char c, va_list ap, t_data *data);
 char			*ft_nchar(char c, size_t n);
 char			*ft_realloc(char *str1, const char *str2);
 char			*ft_realloc_free(char *str1, char *str2);
-char			*ft_base(int n, int base);
+char			*ft_base(long long n, int base);
 char			*ft_wchar_to_char(wchar_t wc);
 int				ft_printf(const char *format, ...);
 

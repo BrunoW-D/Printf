@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_lx.c                                      :+:      :+:    :+:   */
+/*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 15:34:19 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/05/30 19:52:31 by bwang-do         ###   ########.fr       */
+/*   Created: 2018/05/30 16:34:24 by bwang-do          #+#    #+#             */
+/*   Updated: 2018/05/30 16:36:21 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_lx(va_list ap, t_flags *flags)
+char	*ft_strlower(char *str)
 {
-	char	*ret;
+	int	i;
 
-	ret = ft_print_x(ap, flags);
-	ret = ft_strupper(ret);
-	if (flags->options[0])
+	i = 0;
+	while (str[i])
 	{
-		ret[1] = 'X';
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 32;
+		i++;
 	}
-	return (ret);
+	return (str);
 }
