@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/05/30 16:10:32 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/03 19:21:10 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int		get_num(const char *format, t_data *data)
 
 	n = 0;
 	if (format[data->i] == '.')
+	{
 		(data->i)++;
+		if (format[data->i] < '1' || format[data->i] > '9')
+			return (-1);
+	}
 	while (format[data->i] >= '0' && format[data->i] <= '9')
 	{
 		n *= 10;
@@ -62,10 +66,16 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 			data->flags->options[1] = 1;
 		else if (format[data->i] == '+')
 			data->flags->options[2] = 1;
-		else if (format[data->i] == ' ' && !data->flags->options[2])
-			data->flags->options[2] = 2;
-		else if (format[data->i] == '0' && !data->flags->options[1])
-			data->flags->options[1] = 2;
+		else if (format[data->i] == ' ')
+		{
+			if (!data->flags->options[2])
+				data->flags->options[2] = 2;
+		}
+		else if (format[data->i] == '0')
+		{
+			if (!data->flags->options[1])
+				data->flags->options[1] = 2;
+		}
 		else if (format[data->i] >= '1' && format[data->i] <= '9')
 			data->flags->options[3] = get_num(format, data);
 		else if (format[data->i] == '.')
@@ -77,7 +87,12 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 			return (ft_print_controller(format[(data->i)++], ap, data));
 		else
 		{
-			return (ft_strsub(format, i, (data->i)++ - i));
+			if (data->flags->options[3] || data->flags->options[4])
+			{
+				return (ft_width(ft_strdup("%"), 1, data->flags));
+			}
+			else
+				return (ft_strsub(format, i, (data->i)++ - i));
 		}
 		(data->i)++;
 	}

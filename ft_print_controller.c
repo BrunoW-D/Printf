@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/05/30 16:10:51 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/03 16:13:02 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 {
 	int		i;
 	char	*str;
-	int		len;
-	int		width;
 
 	init_p();
 	i = 0;
@@ -47,26 +45,6 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 		if (c == g_types[i])
 			str = g_p[i](ap, data->flags);
 		i++;
-	}
-	len = ft_strlen(str);
-	width = data->flags->options[3];
-	if (width > len)
-	{
-		if (data->flags->options[1] == 2)
-		{
-			if (!(str = ft_realloc_free(ft_nchar('0', width - len), str)))
-				return (NULL);
-		}
-		else if (data->flags->options[1] == 1)
-		{
-			if (!(str = ft_realloc_free(str, ft_nchar(' ', width - len))))
-				return (NULL);
-		}
-		else if (data->flags->options[1] == 0)
-		{
-			if (!(str = ft_realloc_free(ft_nchar(' ', width - len), str)))
-				return (NULL);
-		}
 	}
 	data->total += ft_strlen(str);
 	return (str);

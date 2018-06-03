@@ -6,7 +6,7 @@
 #    By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:37:42 by bwang-do          #+#    #+#              #
-#    Updated: 2018/05/30 19:50:35 by bwang-do         ###   ########.fr        #
+#    Updated: 2018/06/03 16:11:38 by bwang-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC = ft_convert.c \
 	  ft_print_p.c \
 	  ft_strlower.c \
 	  ft_strupper.c \
+	  ft_width.c \
 
 LIB_SRC = ft_bzero.c \
 		  ft_memset.c \

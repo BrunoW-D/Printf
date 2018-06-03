@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 15:26:53 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/14 17:30:40 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/03 16:55:17 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ char	*ft_print_ls(va_list ap, t_flags *flags)
 		ws++;
 	}
 	/* Precision pour wchar ??? */
-	return (ret);
+	return (ft_width(ret, ft_strlen(ret), flags));
 }

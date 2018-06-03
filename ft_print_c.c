@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:37 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/05/30 19:02:24 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/03 16:52:24 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ char	*ft_print_c(va_list ap, t_flags *flags)
 		return (ft_print_lc(ap, flags));
 	c = va_arg(ap, int);
 	ret[0] = c;
-	return (ret);
+	return (ft_width(ret, 1, flags));
 }

@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/16 17:18:58 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/03 15:30:41 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,18 @@ int		ft_printf(const char *format, ...)
 		}
 		else if (format[data->i] == '%')
 		{
-			if ((str = ft_realloc(str, data->buff)) == NULL)
-				return (0);
-			ft_bzero(data->buff, BUFF_SIZE + 1);
-			i = 0;
-			if ((str = ft_realloc_free(str, ft_get_flags(format, ap, data))) == NULL)
-				return (0);
-			data = reset_data(data);
+			if (format[(data->i) + 1])
+			{
+				if ((str = ft_realloc(str, data->buff)) == NULL)
+					return (0);
+				ft_bzero(data->buff, BUFF_SIZE + 1);
+				i = 0;
+				if ((str = ft_realloc_free(str, ft_get_flags(format, ap, data))) == NULL)
+					return (0);
+				data = reset_data(data);
+			}
+			else
+				(data->i)++;
 		}
 		else
 			data->buff[i++] = format[(data->i)++];
