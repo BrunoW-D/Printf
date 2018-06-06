@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 15:30:41 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:39:58 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ t_data	*init_data(t_data *data)
 	flags->modifier[0] = 0;
 	flags->modifier[1] = 0;
 	data->flags = flags;
+	data->str = NULL;
 	data->total = 0;
 	ft_bzero(data->buff, BUFF_SIZE + 1);
 	return (data);
 }
 
-t_data	*reset_data(t_data *data)
+t_data	*reset_flags(t_data *data)
 {
 	int		i;
 
@@ -54,7 +55,6 @@ t_data	*reset_data(t_data *data)
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	char	*str;
 	t_data	*data;
 	int		i;
 
@@ -63,14 +63,14 @@ int		ft_printf(const char *format, ...)
 	if (format == NULL)
 		return (0);
 	va_start(ap, format);
-	str = NULL;
 	i = 0;
 	while (format[data->i])
 	{
 		if (i == BUFF_SIZE)
 		{
-			if ((str = ft_realloc(str, data->buff)) == NULL)
+			if ((data->str = ft_realloc_mem(data->str, data->buff, data->total, ft_strlen(data->buff))) == NULL)
 				return (0);
+			data->total += BUFF_SIZE;
 			ft_bzero(data->buff, BUFF_SIZE + 1);
 			i = 0;
 		}
@@ -78,13 +78,14 @@ int		ft_printf(const char *format, ...)
 		{
 			if (format[(data->i) + 1])
 			{
-				if ((str = ft_realloc(str, data->buff)) == NULL)
+				if ((data->str = ft_realloc_mem(data->str, data->buff, data->total, ft_strlen(data->buff))) == NULL)
 					return (0);
+				data->total += ft_strlen(data->buff);
 				ft_bzero(data->buff, BUFF_SIZE + 1);
 				i = 0;
-				if ((str = ft_realloc_free(str, ft_get_flags(format, ap, data))) == NULL)
+				if (ft_get_flags(format, ap, data) == 0)
 					return (0);
-				data = reset_data(data);
+				data = reset_flags(data);
 			}
 			else
 				(data->i)++;
@@ -92,9 +93,10 @@ int		ft_printf(const char *format, ...)
 		else
 			data->buff[i++] = format[(data->i)++];
 	}
-	if ((str = ft_realloc(str, data->buff)) == NULL)
+	if ((data->str = ft_realloc_mem(data->str, data->buff, data->total, ft_strlen(data->buff))) == NULL)
 		return (0);
+	data->total += ft_strlen(data->buff);
 	va_end(ap);
-	write(1, str, ft_strlen(str));
-	return (ft_strlen(str));
+	write(1, data->str, data->total);
+	return (data->total);
 }

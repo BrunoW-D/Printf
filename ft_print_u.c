@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 15:21:11 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 18:46:17 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:38:40 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ char	*ft_print_u(va_list ap, t_flags *flags)
 	int						len;
 
 	if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'l')
-		n = va_arg(ap, unsigned long long int);
+		n = va_arg(ap, unsigned long long);
 	else if (flags->modifier[0] == 'l')
-		n = va_arg(ap, unsigned long int);
-	else if (flags->modifier[0] == 'h')
-		n = (short)va_arg(ap, unsigned int);
+		n = va_arg(ap, unsigned long);
 	else if (flags->modifier[0] == 'j')
+		n = va_arg(ap, uintmax_t);
+	else if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'h')
+		n = (unsigned char)va_arg(ap, int);
+	else if (flags->modifier[0] == 'h')
+		n = (unsigned short)va_arg(ap, unsigned int);
+	else if (flags->modifier[0] == 'z')
 		n = va_arg(ap, size_t);
 	else
 		n = va_arg(ap, unsigned int);

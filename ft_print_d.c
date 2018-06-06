@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 19:57:06 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/06 16:28:41 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 	else if (flags->modifier[0] == 'z')
 		n = va_arg(ap, ssize_t);
 	else if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'h')
-		n = (char)va_arg(ap, int);
+		n = (signed char)va_arg(ap, int);
 	else if (flags->modifier[0] == 'h')
 		n = (short)va_arg(ap, int);
 	else

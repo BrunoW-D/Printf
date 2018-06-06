@@ -6,7 +6,7 @@
 #    By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:37:42 by bwang-do          #+#    #+#              #
-#    Updated: 2018/06/03 16:11:38 by bwang-do         ###   ########.fr        #
+#    Updated: 2018/06/06 19:24:18 by bwang-do         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC = ft_convert.c \
 	  ft_strlower.c \
 	  ft_strupper.c \
 	  ft_width.c \
+	  ft_memdup.c \
 
 LIB_SRC = ft_bzero.c \
 		  ft_memset.c \
@@ -54,6 +55,8 @@ LIB_SRC = ft_bzero.c \
 		  ft_putchar.c \
 		  ft_putstr.c \
 		  ft_strsub.c \
+		  ft_memalloc.c \
+		  ft_memcpy.c \
 
 OBJ = $(SRC:.c=.o)
 

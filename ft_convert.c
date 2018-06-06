@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 19:21:10 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:40:34 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	get_modifier(const char *format, t_data *data)
 		data->flags->modifier[1] = format[(data->i)++];
 }
 
-char	*ft_get_flags(const char *format, va_list ap, t_data *data)
+int		ft_get_flags(const char *format, va_list ap, t_data *data)
 {
 	int		i;
 
@@ -92,9 +92,9 @@ char	*ft_get_flags(const char *format, va_list ap, t_data *data)
 				return (ft_width(ft_strdup("%"), 1, data->flags));
 			}
 			else
-				return (ft_strsub(format, i, (data->i)++ - i));
+				return (ft_strdup(&format[data->i]));
 		}
 		(data->i)++;
 	}
-	return (ft_strsub(format, i, data->i));
+	return (1);
 }

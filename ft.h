@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 16:53:00 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:39:32 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_data
 	t_flags		*flags;
 	int			i;
 	char		buff[BUFF_SIZE + 1];
+	char		*str;
 	int			total;
 }				t_data;
 
@@ -44,17 +45,21 @@ char			*ft_strnew(size_t size);
 void			ft_putchar(char c);
 void			ft_putstr(char const *str);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
+void			*ft_memalloc(size_t size);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
 
 char			*new_itoa(long long n);
 char			*ft_utoa(unsigned long long n);
 char			*ft_strlower(char *str);
 char			*ft_strupper(char *str);
 
-char			*ft_get_flags(const char *format, va_list ap, t_data *data);
+int				ft_get_flags(const char *format, va_list ap, t_data *data);
 char			*ft_print_controller(char c, va_list ap, t_data *data);
 char			*ft_nchar(char c, size_t n);
 char			*ft_realloc(char *str1, const char *str2);
 char			*ft_realloc_free(char *str1, char *str2);
+char			*ft_realloc_mem(char *str1, char *str2, int len1, int len2);
+char			*ft_memdup(const char *src, int len);
 char			*ft_base(long long n, int base);
 char			*ft_wchar_to_char(wchar_t wc);
 int				ft_printf(const char *format, ...);
