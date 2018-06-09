@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:21:51 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/06 19:40:34 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 18:56:55 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	get_modifier(const char *format, t_data *data)
 int		ft_get_flags(const char *format, va_list ap, t_data *data)
 {
 	int		i;
+	char	*str;
+	int		ret;
 
 	i = data->i;
 	(data->i)++;
@@ -85,14 +87,18 @@ int		ft_get_flags(const char *format, va_list ap, t_data *data)
 			get_modifier(format, data);
 		else if (is_type_flag(format[data->i]))
 			return (ft_print_controller(format[(data->i)++], ap, data));
-		else
+		else if (data->flags->options[3] || data->flags->options[4])
 		{
-			if (data->flags->options[3] || data->flags->options[4])
-			{
-				return (ft_width(ft_strdup("%"), 1, data->flags));
-			}
-			else
-				return (ft_strdup(&format[data->i]));
+			str = ft_strdup(&format[data->i]);
+			if ((ret = ft_width(str, 1, data->flags)) == 0)
+				return (0);
+			if ((data->str = ft_realloc_mem(data->str, str, data->total, ret)) == NULL)
+				return (0);
+		}
+		else if (format[data->i] == '%')
+		{
+			if ((data->str = ft_realloc_mem(data->str, ft_strdup("%"), data->total, 1)) == NULL)
+				return (0);
 		}
 		(data->i)++;
 	}

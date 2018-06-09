@@ -6,13 +6,13 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/06 19:50:30 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 18:57:33 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-static char	*(*g_p[14]) (va_list ap, t_flags *flags);
+static int	(*g_p[14]) (char *ret, va_list ap, t_flags *flags);
 static char	*g_types = "sSpdDioOuUxXcC";
 
 void	init_p(void)
@@ -33,22 +33,25 @@ void	init_p(void)
 	g_p[13] = ft_print_lc;
 }
 
-char	*ft_print_controller(char c, va_list ap, t_data *data)
+int		ft_print_controller(char c, va_list ap, t_data *data)
 {
 	int		i;
 	char	*str;
+	int		ret;
 
 	init_p();
 	i = 0;
 	str = NULL;
+	ret = 0;
 	while (i <= 13)
 	{
 		if (c == g_types[i])
-			str = g_p[i](ap, data->flags);
+			if ((ret = g_p[i](str, ap, data->flags)) == 0)
+				return (0);
 		i++;
 	}
-	if ((data->str = ft_realloc_mem(data->str, str, data->total, ???)) == NULL)
-		return (NULL);
-	data->total += ???;
-	return (str);
+	if ((data->str = ft_realloc_mem(data->str, str, data->total, ret)) == NULL)
+		return (0);
+	data->total += ret;
+	return (1);
 }

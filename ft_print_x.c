@@ -6,16 +6,15 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:20:34 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/06 17:47:18 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 19:03:48 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_x(va_list ap, t_flags *flags)
+int	ft_print_x(char *ret, va_list ap, t_flags *flags)
 {
 	unsigned long long	x;
-	char				*ret;
 	int					len;
 
 	if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'l')
@@ -35,21 +34,20 @@ char	*ft_print_x(va_list ap, t_flags *flags)
 	if (x == 0 && flags->options[4] == -1)
 		ret = (ft_strdup(""));
 	else if ((ret = ft_base(x, 16)) == NULL)
-		return (NULL);
+		return (0);
 	len = ft_strlen(ret);
 	if (flags->options[0] && ret[0] != '0')
 	{
 		if (flags->options[1] == 2)
 		{
-			if ((ret = ft_width(ret, len + 2, flags)) == NULL)
-				return (NULL);
+			if ((ft_width(ret, len + 2, flags)) == 0)
+				return (0);
 		}
 		if ((ret = ft_realloc_free(ft_strdup("0x"), ret)) == NULL)
-			return (NULL);
+			return (0);
 		if (flags->options[1] != 2)
-			ret = ft_width(ret, len + 2, flags);
+			return (ft_width(ret, len + 2, flags));
 	}
 	else
-		ret = ft_width(ret, len, flags);
-	return (ret);
+		return (ft_width(ret, len, flags));
 }

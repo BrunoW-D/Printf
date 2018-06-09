@@ -6,14 +6,14 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 15:32:21 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/07 17:19:22 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 18:08:09 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_lo(va_list ap, t_flags *flags)
+int	ft_print_lo(char *ret, va_list ap, t_flags *flags)
 {
 	flags->modifier[0] = 'l';
-	return (ft_print_o(ap, flags));
+	return (ft_print_o(ret, ap, flags));
 }

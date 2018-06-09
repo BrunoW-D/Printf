@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:17:01 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/06 19:39:32 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 18:14:14 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char			*ft_strlower(char *str);
 char			*ft_strupper(char *str);
 
 int				ft_get_flags(const char *format, va_list ap, t_data *data);
-char			*ft_print_controller(char c, va_list ap, t_data *data);
+int				ft_print_controller(char c, va_list ap, t_data *data);
 char			*ft_nchar(char c, size_t n);
 char			*ft_realloc(char *str1, const char *str2);
 char			*ft_realloc_free(char *str1, char *str2);
@@ -63,20 +63,20 @@ char			*ft_memdup(const char *src, int len);
 char			*ft_base(long long n, int base);
 char			*ft_wchar_to_char(wchar_t wc);
 int				ft_printf(const char *format, ...);
-char			*ft_width(char *str, int len, t_flags *flags);
+int				ft_width(char *str, int len, t_flags *flags);
 
-char			*ft_print_c(va_list ap, t_flags *flags);
-char			*ft_print_lc(va_list ap, t_flags *flags);
-char			*ft_print_s(va_list ap, t_flags *flags);
-char			*ft_print_ls(va_list ap, t_flags *flags);
-char			*ft_print_d(va_list ap, t_flags *flags);
-char			*ft_print_ld(va_list ap, t_flags *flags);
-char			*ft_print_o(va_list ap, t_flags *flags);
-char			*ft_print_lo(va_list ap, t_flags *flags);
-char			*ft_print_x(va_list ap, t_flags *flags);
-char			*ft_print_lx(va_list ap, t_flags *flags);
-char			*ft_print_p(va_list ap, t_flags *flags);
-char			*ft_print_u(va_list ap, t_flags *flags);
-char			*ft_print_lu(va_list ap, t_flags *flags);
+int				ft_print_c(char *str, va_list ap, t_flags *flags);
+int				ft_print_lc(char *str, va_list ap, t_flags *flags);
+int				ft_print_s(char *str, va_list ap, t_flags *flags);
+int				ft_print_ls(char *str, va_list ap, t_flags *flags);
+int				ft_print_d(char *str, va_list ap, t_flags *flags);
+int				ft_print_ld(char *str, va_list ap, t_flags *flags);
+int				ft_print_o(char *str, va_list ap, t_flags *flags);
+int				ft_print_lo(char *str, va_list ap, t_flags *flags);
+int				ft_print_x(char *str, va_list ap, t_flags *flags);
+int				ft_print_lx(char *str, va_list ap, t_flags *flags);
+int				ft_print_p(char *str, va_list ap, t_flags *flags);
+int				ft_print_u(char *str, va_list ap, t_flags *flags);
+int				ft_print_lu(char *str, va_list ap, t_flags *flags);
 
 #endif

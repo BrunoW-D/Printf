@@ -6,16 +6,15 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/06 16:28:41 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 19:02:33 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_d(va_list ap, t_flags *flags)
+int	ft_print_d(char *ret, va_list ap, t_flags *flags)
 {
 	long long	n;
-	char		*ret;
 	int			len;
 	int			i;
 
@@ -34,36 +33,41 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 	else
 		n = va_arg(ap, int);
 	if ((ret = new_itoa(n)) == NULL)
-		return (NULL);
+		return (0);
 	len = ft_strlen(ret);
 	if (n < 0)
 		len--;
 	if (flags->options[4] > len)
 	{
 		if ((ret = ft_realloc_free(ft_nchar('0', flags->options[4] - len), ret)) == NULL)
-			return (NULL);
+			return (0);
 	}
 	len = ft_strlen(ret);
 	if (flags->options[2] == 1 && n >= 0)
 	{
 		if (flags->options[1] == 2)
 		{
-			if ((ret = ft_width(ret, len + 1, flags)) == NULL)
-				return (NULL);
+			if ((ft_width(ret, len + 1, flags)) == 0)
+				return (0);
 		}
 		if ((ret = ft_realloc_free(ft_strdup("+"), ret)) == NULL)
-			return (NULL);
+			return (0);
 		if (flags->options[1] != 2)
-			ret = ft_width(ret, len + 1, flags);
+			if ((ft_width(ret, len + 1, flags)) == 0)
+				return (0);
 	}
 	else if (flags->options[2] == 2 && n >= 0)
 	{
 		if ((ret = ft_realloc_free(ft_strdup(" "), ret)) == NULL)
-			return (NULL);
-		ret = ft_width(ret, len + 1, flags);
+			return (0);
+		if ((ft_width(ret, len + 1, flags)) == 0)
+			return (0);
 	}
 	else
-		ret = ft_width(ret, len, flags);
+	{
+		if ((ft_width(ret, len, flags)) == 0)
+			return (0);
+	}
 	if (ret[0] == '0' && n < 0)
 	{
 		i = 0;
@@ -72,5 +76,5 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 		ret[i] = '0';
 		ret[0] = '-';
 	}
-	return (ret);
+	return (ft_width(ret, ft_strlen(ret), flags));
 }

@@ -6,16 +6,15 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:20:23 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/06 16:49:01 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/09 19:03:12 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-char	*ft_print_o(va_list ap, t_flags *flags)
+int	ft_print_o(char *ret, va_list ap, t_flags *flags)
 {
 	unsigned long long	o;
-	char				*ret;
 	int					len;
 
 	if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'l')
@@ -33,15 +32,15 @@ char	*ft_print_o(va_list ap, t_flags *flags)
 	else
 		o = va_arg(ap, unsigned int);
 	if ((ret = ft_base(o, 8)) == NULL)
-		return (NULL);
+		return (0);
 	len = ft_strlen(ret);
 	if (flags->options[4] > len)
 	{
 		if ((ret = ft_realloc_free(ft_nchar('0', flags->options[4] - len), ret)) == NULL)
-			return (NULL);
+			return (0);
 	}
 	if (flags->options[0])
 		if ((ret = ft_realloc_free(ft_strdup("0"), ret)) == NULL)
-			return (NULL);
+			return (0);
 	return (ft_width(ret, ft_strlen(ret), flags));
 }
