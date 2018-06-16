@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:09:41 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 16:13:02 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/16 19:13:37 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ char	*ft_print_controller(char c, va_list ap, t_data *data)
 	while (i <= 13)
 	{
 		if (c == g_types[i])
-			str = g_p[i](ap, data->flags);
+		{
+			if ((str = g_p[i](ap, data->flags)) == NULL)
+				return (NULL);
+		}
 		i++;
 	}
 	data->total += ft_strlen(str);

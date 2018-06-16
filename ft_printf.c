@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 11:35:45 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 15:30:41 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/16 19:02:52 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ t_data	*reset_data(t_data *data)
 	data->flags->modifier[0] = 0;
 	data->flags->modifier[1] = 0;
 	return (data);
+}
+
+void	ft_free_all(t_data *data, char *str)
+{
+	free(str);
+	str = NULL;
+	free(data->flags);
+	free(data);
+	data = NULL;
 }
 
 int		ft_printf(const char *format, ...)
@@ -96,5 +105,7 @@ int		ft_printf(const char *format, ...)
 		return (0);
 	va_end(ap);
 	write(1, str, ft_strlen(str));
-	return (ft_strlen(str));
+	i = ft_strlen(str);
+	ft_free_all(data, str);
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:19 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/03/16 16:58:58 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/16 18:58:03 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_realloc_free(char *str1, char *str2)
 	str1 = ft_strcat(str1, str2);
 	free(tmp);
 	free(str2);
+	tmp = NULL;
 	str2 = NULL;
 	return (str1);
 }

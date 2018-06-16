@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 15:18:57 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/05/30 18:45:42 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/16 15:39:29 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@ static char	*ft_init_negative(int len, long long *nb)
 	if ((str = ft_strnew(len)) == NULL)
 		return (NULL);
 	str[0] = '-';
-	/*
-	if ((**(long long**)p) == -9223372036854775808)
-	{
-		u = 9223372036854775808U;
-		*p = &u;
-	}
-	else
-	*/
 	*nb *= -1;
 	return (str);
 }
@@ -36,15 +28,15 @@ char		*new_itoa(long long n)
 	char		*str;
 	long long	nb;
 	int			len;
-	//void		*p;
 
 	if (n == 0)
 		return (ft_strdup("0"));
+	if (n == -9223372036854775807 - 1)
+		return (ft_strdup("-9223372036854775808"));
 	nb = n;
 	len = 1;
 	while (nb /= 10)
 		len++;
-	//p = &nb;
 	nb = n;
 	if (n < 0)
 	{

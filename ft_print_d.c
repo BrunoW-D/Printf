@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:19:47 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/03 19:57:06 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/06/16 19:10:07 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 	else if (flags->modifier[0] == 'z')
 		n = va_arg(ap, ssize_t);
 	else if (flags->modifier[0] == flags->modifier[1] && flags->modifier[1] == 'h')
-		n = (char)va_arg(ap, int);
+		n = (signed char)va_arg(ap, int);
 	else if (flags->modifier[0] == 'h')
 		n = (short)va_arg(ap, int);
 	else
 		n = va_arg(ap, int);
-	if ((ret = new_itoa(n)) == NULL)
+	if (n == 0 && flags->options[4] == -1)
+	{
+		if ((ret = ft_strdup("")) == NULL)
+			return (NULL);
+	}
+	else if ((ret = new_itoa(n)) == NULL)
 		return (NULL);
 	len = ft_strlen(ret);
 	if (n < 0)
@@ -54,17 +59,21 @@ char	*ft_print_d(va_list ap, t_flags *flags)
 		if ((ret = ft_realloc_free(ft_strdup("+"), ret)) == NULL)
 			return (NULL);
 		if (flags->options[1] != 2)
-			ret = ft_width(ret, len + 1, flags);
+		{
+			if ((ret = ft_width(ret, len + 1, flags)) == NULL)
+				return (NULL);
+		}
 	}
 	else if (flags->options[2] == 2 && n >= 0)
 	{
 		if ((ret = ft_realloc_free(ft_strdup(" "), ret)) == NULL)
 			return (NULL);
-		ret = ft_width(ret, len + 1, flags);
+		if ((ret = ft_width(ret, len + 1, flags)) == NULL)
+			return (NULL);
 	}
-	else
-		ret = ft_width(ret, len, flags);
-	if (ret[0] == '0' && n < 0)
+	else if ((ret = ft_width(ret, len, flags)) == NULL)
+		return (NULL);
+	if (ret && ret[0] == '0' && n < 0)
 	{
 		i = 0;
 		while (ret[i] == '0')
