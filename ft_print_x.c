@@ -6,7 +6,7 @@
 /*   By: bwang-do <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:20:34 by bwang-do          #+#    #+#             */
-/*   Updated: 2018/06/16 18:55:05 by bwang-do         ###   ########.fr       */
+/*   Updated: 2018/07/29 00:09:23 by bwang-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_print_x(va_list ap, t_flags *flags)
 			return (NULL);
 	}
 	else if ((ret = ft_base(x, 16)) == NULL)
-		return (0);
+		return (NULL);
 	len = ft_strlen(ret);
 	if (flags->options[0] && ret[0] != '0' && ret[0] != '\0')
 	{
